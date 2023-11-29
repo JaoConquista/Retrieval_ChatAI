@@ -1,0 +1,19 @@
+{
+  "name": "retrieval_chatai",
+  "version": "1.0.0",
+  "description": "This is a project to make a chatbot based on your own database",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.2"
+  },
+  "dependencies": {
+    "langchain": "^0.0.198"
+  }
+}
