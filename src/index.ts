@@ -1,15 +1,3 @@
-// import { OpenAI } from "langchain/llms/openai";
-// import { FaissStore } from "langchain/vectorstores/faiss";
-// // import { PDFLoader } from "langchain/document_loaders/fs/pdf";
-// import { DocxLoader } from "langchain/document_loaders/fs/docx";
-// import { JSONLoader } from "langchain/document_loaders/fs/json";
-// import {
-//   ConversationChain,
-//   ConversationalRetrievalQAChain,
-// } from "langchain/chains";
-// import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
-// import { streamToResponse } from "ai";
-
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { HNSWLib } from "langchain/vectorstores/hnswlib";
@@ -18,14 +6,18 @@ import { ChatOpenAI } from "langchain/chat_models/openai";
 import { RunnableSequence } from "langchain/schema/runnable"
 import { StringOutputParser } from "langchain/schema/output_parser"
 import { formatDocumentsAsString } from "langchain/util/document"
+require('dotenv').config();
 
 const main = async () => {
+
+  const key = process.env.OPENAI_API_KEY
+
   const embeddings = new OpenAIEmbeddings({
-    openAIApiKey: "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",
+    openAIApiKey: key,
   });
 
   const model = new ChatOpenAI({
-    openAIApiKey: "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",
+    openAIApiKey: key,
   });
 
   let chunks: any = [];
