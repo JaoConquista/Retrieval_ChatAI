@@ -4,17 +4,20 @@
   "description": "This is a project to make a chatbot based on your own database",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev src/index.ts"
+    "start": "ts-node-dev src/index.ts",
+    "server": "ts-node-dev src/server.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^4.17.21",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.3.2"
   },
   "dependencies": {
     "dotenv": "^16.3.1",
+    "express": "^4.18.2",
     "hnswlib-node": "^1.4.2",
     "langchain": "^0.0.198",
     "pdf-parse": "^1.1.1"
