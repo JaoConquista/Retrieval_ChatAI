@@ -1,18 +1,28 @@
-import {Request, Response} from "express";
+import {Request, Response, response} from "express";
+import { UserService } from "../services/UserService";
+
+
 
 
 export class UserController {
 
   createUser = (request: Request, response: Response) => {
-    const body = request.body;
+    const userService = new UserService()
+    const user = request.body;
 
+    if(!user.name) return response.status(400).json({ message: "Bad Request: Name required" });
+
+    if(!user.email) return response.status(400).json({ message: "Bad Request: Email required" });
+
+    userService.createUser(user.name, user.email)
     return response.status(200)
       .json({ message: "Arquivo enviado com sucesso !" });
   };
 
   getUser = (request: Request, response: Response) => {
-    console.log("Get method")
-    return response.status(200).json({ message: "Files PDF"})
+    const userService = new UserService()
+    const users = userService.getAllUsers()
+    return response.status(200).json(users)
   }
-}
 
+}

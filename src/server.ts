@@ -1,15 +1,13 @@
 import Express, {Request, Response} from "express";
 import { UserController } from "./controllers/UserController";
+import { router } from "./routes";
 
-const userController = new UserController();
 
 const server =  Express();
 
+//allowing json
 server.use(Express.json());
 
-
-server.get("/", userController.getUser)
-
-server.post("/pdf", userController.createUser)
+server.use(router)
 
 server.listen(5000, () => console.log("Servidor rodando :)"))
