@@ -22,7 +22,7 @@ const main = async () => {
 
   let chunks: any = [];
 
-  const pathToFile = "How_to_Bake_a_Cake.pdf";
+  const pathToFile = "JoãoConquista-Currículo.pdf";
 
   let pdfLoader = new PDFLoader(pathToFile);
 
@@ -67,7 +67,7 @@ const main = async () => {
     new StringOutputParser(),
   ]);
 
-  const questionOne = "In this cake recipe, what is the first step ?";
+  const questionOne = "Quem é João ? responda em português";
 
   const resultOne = await chain.invoke({question: questionOne,});
 
