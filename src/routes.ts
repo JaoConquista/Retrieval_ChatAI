@@ -7,4 +7,7 @@ export const router = Router();
 
 router.route("/")
 .get(userController.getUser)
-.post(userController.createUser)
+.post(userController.createUser)    
+
+router.route("/chat")
+.post(userController.chat)
