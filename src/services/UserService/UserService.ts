@@ -1,37 +1,40 @@
-import { chatInstance } from "..";
+import { Chat } from "../Chat/chat";
+import { User } from "../../interface/User.interface";
 
 const db = [
   {
     name: "João",
     email: "joao@gmail.com",
   },
-  {
-    name: "Maria",
-    email: "maria@gmail.com",
-  },
 ];
 
 export class UserService {
+  db: User[];
+
+  constructor(database = db) {
+    this.db = database;
+  }
+
   createUser = (name: string, email: string) => {
     const user = {
       name,
       email,
     };
-    db.push(user);
-    console.log("DB updated", user);
+    this.db.push(user);
+    console.log("DB updated", this.db);
   };
 
   getAllUsers = () => {
-    return db;
+    return this.db;
   };
 
   chat = (question: string): Promise<string> => {
+    const chat = new Chat();
     return new Promise((resolve, reject) => {
-      chatInstance
+      chat
         .makeResponse(question)
 
         .then((response) => {
-          // console.log("Service response: ", response);
           resolve(response);
         })
 
