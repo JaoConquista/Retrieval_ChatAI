@@ -12,7 +12,7 @@ import { formatDocumentsAsString } from "langchain/util/document";
 import { VectorStoreRetriever } from "langchain/dist/vectorstores/base";
 require("dotenv").config();
 
-class Chat {
+export class Chat {
   private ifSameDocument: string | undefined;
   private load: VectorStoreRetriever<HNSWLib> | undefined;
 
@@ -34,7 +34,7 @@ class Chat {
       openAIApiKey: key,
     });
 
-    const pathToFile = "JoãoConquista-Currículo.pdf";
+    const pathToFile = "How_to_Bake_a_Cake.pdf";
 
     console.log("before: ", this.ifSameDocument ?? "");
 
@@ -80,7 +80,7 @@ class Chat {
     model: ChatOpenAI<ChatOpenAICallOptions>
   ) => {
     const questionPrompt = PromptTemplate.fromTemplate(
-      `Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer.
+      `Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer and reponse in portuguese.
       ----------------
       CONTEXT: {context}
       ----------------
@@ -117,5 +117,3 @@ class Chat {
     return resultOne;
   };
 }
-
-export const chatInstance = new Chat();
