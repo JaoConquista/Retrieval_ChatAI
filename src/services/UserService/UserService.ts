@@ -1,5 +1,7 @@
 import { Chat } from "../Chat/chat";
 import { User } from "../../interface/User.interface";
+import { upload } from "../../config/multerConfig";
+import multer from "multer";
 
 const db = [
   {
@@ -10,7 +12,6 @@ const db = [
 
 export class UserService {
   db: User[];
-
   constructor(database = db) {
     this.db = database;
   }
@@ -42,5 +43,14 @@ export class UserService {
           reject(error);
         });
     });
+  };
+
+  uploadFile = (fieldName: string) => {
+    try {
+      return upload.single(fieldName);
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   };
 }

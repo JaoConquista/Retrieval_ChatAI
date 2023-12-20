@@ -1,5 +1,6 @@
 import { Request, Response, response } from "express";
 import { UserService } from "../services/UserService/UserService";
+import multer from "multer";
 
 export class UserController {
   userService: UserService;
@@ -33,7 +34,7 @@ export class UserController {
 
   chat = (request: Request, response: Response) => {
     const userService = new UserService();
-    
+
     const question: string = request.body.question;
 
     const answer = userService.chat(question);
@@ -42,4 +43,20 @@ export class UserController {
       return response.status(201).json({ chat: answer });
     });
   };
+
+  upload = (request: Request, response: Response) => {
+    const userService = new UserService();
+
+    const upload = userService.uploadFile("file");
+
+    upload(request, response, (err) => {
+      if (err instanceof multer.MulterError) {
+        return response.status(500).json(err);
+      } else if (err) {
+        return response.status(500).json(err);
+      }
+
+      return response.status(200).json({ message: "File Uploaded Successfully"});
+    });
+  }
 }
