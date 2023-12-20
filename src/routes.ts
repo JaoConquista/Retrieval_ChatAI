@@ -14,4 +14,4 @@ router.route("/chat")
 .post(userController.chat)
 
 router.route("/file")
-.post(userController.upload);
+.post(userController.upload );
