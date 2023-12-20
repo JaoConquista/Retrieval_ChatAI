@@ -10,6 +10,8 @@ import { RunnableSequence } from "langchain/schema/runnable";
 import { StringOutputParser } from "langchain/schema/output_parser";
 import { formatDocumentsAsString } from "langchain/util/document";
 import { VectorStoreRetriever } from "langchain/dist/vectorstores/base";
+import { promises } from "fs";
+import { pathToDocs } from "../PathToDocs/pathToDocs";
 require("dotenv").config();
 
 export class Chat {
@@ -34,25 +36,18 @@ export class Chat {
       openAIApiKey: key,
     });
 
-    const pathToFile = "How_to_Bake_a_Cake.pdf";
+    let filesList = await pathToDocs("uploads");
+
 
     console.log("before: ", this.ifSameDocument ?? "");
 
     let result;
 
-    if (pathToFile === this.ifSameDocument) {
-      result = this._conversation(question, this.load, model);
+    this.load = await this._loadDocument(filesList[filesList.length - 1], embeddings);
 
-      return result;
-    } else {
-      this.load = await this._loadDocument(pathToFile, embeddings);
+    result = this._conversation(question, this.load, model);
 
-      result = this._conversation(question, this.load, model);
-
-      this.ifSameDocument = pathToFile;
-
-      return result;
-    }
+    return result;
   };
 
   private _loadDocument = async (
