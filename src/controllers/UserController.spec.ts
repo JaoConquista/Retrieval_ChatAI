@@ -11,10 +11,12 @@ describe("UserController", () => {
     { name: 'Alice', email: 'alice@example.com' },
     { name: 'Bob', email: 'bob@example.com' },
   ];
+  
   const mockUserService: Partial<UserService> = {
     createUser: jest.fn(),
     getAllUsers: jest.fn().mockReturnValue(mockDb),
   };
+
   const userController = new UserController(mockUserService as UserService);
 
   it("should add a new user", () => {
@@ -38,5 +40,7 @@ describe("UserController", () => {
     userController.getUser(mockResponse);
     expect(mockResponse.state.status).toEqual(201);
     expect(mockResponse.state.json).toEqual(mockDb);
+    console.log(mockResponse.state.json);
   });
+
 });

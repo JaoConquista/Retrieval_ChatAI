@@ -33,11 +33,10 @@ export class UserController {
   };
 
   chat = (request: Request, response: Response) => {
-    const userService = new UserService();
 
     const question: string = request.body.question;
 
-    const answer = userService.chat(question);
+    const answer = this.userService.chat(question);
 
     answer.then((answer) => {
       return response.status(201).json({ chat: answer });
@@ -45,9 +44,8 @@ export class UserController {
   };
 
   upload = (request: Request, response: Response) => {
-    const userService = new UserService();
 
-    const upload = userService.uploadFile("file");
+    const upload = this.userService.uploadFile("file");
 
     upload(request, response, (err) => {
       if (err instanceof multer.MulterError) {

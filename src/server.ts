@@ -1,13 +1,14 @@
-import Express, {Request, Response} from "express";
-import { UserController } from "./controllers/UserController";
+import "reflect-metadata";
+import Express from "express";
 import { router } from "./routes";
+import { AppDataSource } from "./database/datasource";
+
+const server = Express();
 
 
-const server =  Express();
 
-//allowing json
 server.use(Express.json());
 
-server.use(router)
+server.use(router);
 
-server.listen(5000, () => console.log("Servidor rodando :)"))
+server.listen(5000, () => console.log("Server on"));

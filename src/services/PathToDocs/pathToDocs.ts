@@ -7,6 +7,7 @@ export const pathToDocs = async (dic: string, files?: string[]) => {
         files = [];
 
     let filesList = await promises.readdir(dic);
+    
     for(let file in filesList){
         console.log(dic + "/" + filesList[file]);
         paths.push(dic + "/" + filesList[file]);
