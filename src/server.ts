@@ -5,8 +5,6 @@ import { AppDataSource } from "./database/datasource";
 
 const server = Express();
 
-
-
 server.use(Express.json());
 
 server.use(router);
